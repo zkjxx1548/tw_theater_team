@@ -24,9 +24,14 @@ public class MovieController {
         return movieService.getMoviesByGenres(genres);
     }
 
-    @PostMapping("/getMoviesByTitle")
-    public Movie getMovieByTitle(@RequestBody String title){
+    @PostMapping("/getMovieByTitle")
+    public Movie[] getMovieByTitle(@RequestBody String title){
         return movieService.getMoviesByTitle(title);
+    }
+
+    @PostMapping("/search")
+    public Movie[] search(@RequestBody String info){
+        return movieService.search(info);
     }
 
     @PostMapping("/recommend")

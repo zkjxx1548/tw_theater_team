@@ -25,18 +25,56 @@ public class MovieService {
         initMovies();
     }
 
+    public Movie[] search(String info) {
+        if(getMoviesByTitle(info).length != 0) {
+            return getMoviesByTitle(info);
+        }
+        if (getMoviesByOriginTitle(info).length != 0) {
+            return getMoviesByOriginTitle(info);
+        }
+        if (getMoviesByDirector(info).length != 0) {
+            return getMoviesByDirector(info);
+        }
+        if (getMoviesByCast(info).length != 0) {
+            return getMoviesByCast(info);
+        }
+        if (getMoviesByGenres(info).length != 0) {
+            return getMoviesByGenres(info);
+        } else {
+            return null;
+        }
+    }
+
     public Movie[] getMoviesByGenres(String genres) {
         return movies.stream()
                 .filter(movie -> movie.getGenres().contains(genres))
                 .toArray(Movie[]::new);
     }
 
-    public Movie getMoviesByTitle(String title) {
+    public Movie[] getMoviesByTitle(String title) {
         return movies.stream()
                 .filter(movie -> movie.getTitle().equals(title))
-                .findFirst()
-                .orElse(null);
+                .toArray(Movie[]::new);
     }
+
+    public Movie[] getMoviesByOriginTitle(String originTitle) {
+        return movies.stream()
+                .filter(movie -> movie.getOriginalTitle().equals(originTitle))
+                .toArray(Movie[]::new);
+    }
+
+    public Movie[] getMoviesByCast(String cast) {
+        return movies.stream()
+                .filter(movie -> movie.getCasts().contains(cast))
+                .toArray(Movie[]::new);
+    }
+
+    public Movie[] getMoviesByDirector(String director) {
+        return movies.stream()
+                .filter(movie -> movie.getDirectors().contains(director))
+                .toArray(Movie[]::new);
+    }
+
 
     private void initMovies() {
         movies.clear();
@@ -47,7 +85,7 @@ public class MovieService {
 
     public Movie recommendByTitle(String title) {
         Movie recommendMovie = movies.get(0);
-        Movie currentMovie = getMoviesByTitle(title);
+        Movie currentMovie = getMoviesByTitle(title)[0];
         String[] currentMovieDirectors = currentMovie.getDirectors().split(",");
         String[] currentMovieGenres = currentMovie.getGenres().split(",");
         String[] currentMovieCasts = currentMovie.getCasts().split(",");
