@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="referrer" content="no-referrer"/>
+  <title>影片详情</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="./static/details.css"/>
+</head>
+<body>
+<nav id="top-bar">
+  <a href="index.html" class="logo">
+    <img src="./static/tw-logo.svg" alt="logo"/>
+  </a>
+  <a href="index.html" id="page-title">
+    <p>思沃影院 TW Theater</p>
+  </a>
+  <div id="search-bar">
+    <form action="results.html" target="_blank">
+      <input type="search" name="keyword" id="search-box" placeholder="搜索电影名"/>
+      <input type="submit" id="search-button"/>
+    </form>
+  </div>
+</nav>
+<div id="main">
+  <h2 id="movie-title"></h2>
+  <div id="movie-info">
+    <img src=""
+         alt="poster"
+         id="movie-info-img" width="300px"/>
+    <div id="movie-info-content">
+      
+    </div>
+    <div id="movie-info-photos">
+
+    </div>
+  </div>
+  <h3 class="details-subtitle">剧情简介</h3>
+  <p id="movie-plot"></p>
+  <h3 class="details-subtitle">相似电影推荐</h3>
+  <div id="movie-recommended">
+  </div>
+</div>
+</body>
+<script type="module" src="./src/details.js"></script>
+</html>

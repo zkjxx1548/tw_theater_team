@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="referrer" content="no-referrer"/>
+  <title>思沃影院 - 首页</title>
+  <link href="./static/index.css" rel="stylesheet"/>
+  <link href="./static/iconfont/iconfont.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav id="top-bar">
+  <a href="index.html" class="logo">
+    <img src="./static/tw-logo.svg" alt="logo"/>
+  </a>
+  <a href="index.html" id="page-title">
+    <p>思沃影院 TW Theater</p>
+  </a>
+  <div id="search-bar">
+    <form action="results.html">
+      <input type="search" name="keyword" id="search-box" placeholder="搜索电影名"/>
+      <input type="submit" id="search-button"/>
+    </form>
+  </div>
+</nav>
+
+<nav id="side-bar">
+  <h2>排序方式</h2>
+  <hr/>
+  <ul id="sorting-options">
+    <li class="selected "><span class="iconfont icon-sort selected-icon"></span>综合</li>
+    <li class="unselected "><span class="iconfont icon-shuffle"></span>随机</li>
+  </ul>
+  <h2>分类</h2>
+  <hr/>
+  <ul id="genres-list">
+    <!--renderGenres-->
+  </ul>
+  <hr/>
+  <p>
+    <label for="limit-select">显示数量</label>
+    <select name="show-limit" id="limit-select">
+      <option value="16" selected>16部</option>
+      <option value="32">32部</option>
+      <option value="0">无限制</option>
+    </select>
+  </p>
+</nav>
+
+<section id="gallery">
+  <!--renderGallery-->
+</section>
+<script type="module" src="./src/index.js"></script>
+</body>
+</html>

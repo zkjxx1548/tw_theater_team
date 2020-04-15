@@ -1,14 +1,16 @@
-package com.thoughtworks.movies;
+package com.thoughtworks.movies.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.math.BigDecimal;
+
 @Table("movies")
 public class Movie {
     @Id
     private int id;
-    private double rating;
+    private BigDecimal rating;
     private String title;
     @Column("origin_title")
     private String originalTitle;
@@ -23,7 +25,7 @@ public class Movie {
     private String album;
     private String cast;
 
-    public Movie(int id, double rating, String title, String originalTitle, String genres, String year, String pubDates, String image, String summary, String durations, String photo, String album, String cast) {
+    public Movie(int id, BigDecimal rating, String title, String originalTitle, String genres, String year, String pubDates, String image, String summary, String durations, String photo, String album, String cast) {
         this.id = id;
         this.rating = rating;
         this.title = title;
@@ -47,11 +49,11 @@ public class Movie {
         this.id = id;
     }
 
-    public double getRating() {
+    public BigDecimal getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(BigDecimal rating) {
         this.rating = rating;
     }
 

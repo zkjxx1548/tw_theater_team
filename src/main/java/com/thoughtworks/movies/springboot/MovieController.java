@@ -1,11 +1,13 @@
-package com.thoughtworks.movies;
+package com.thoughtworks.movies.springboot;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.thoughtworks.movies.entity.Details;
+import com.thoughtworks.movies.entity.Movie;
+import com.thoughtworks.movies.entity.Result;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class MovieController {
     final MovieService movieService;
@@ -22,13 +24,13 @@ public class MovieController {
     }
 
     @GetMapping("/details")
-    public Movie getDetail(@RequestParam(name = "id")String id){
+    public Details getDetail(@RequestParam(name = "id")String id){
         return movieService.getMoviesById(id)[0];
     }
 
-    @GetMapping("search")
-    public Movie search(@RequestParam(name = "keyword")String info){
-        return movieService.search(info)[0];
+    @GetMapping("/search")
+    public Result[] search(@RequestParam(name = "keyword")String keyword){
+        return movieService.search(keyword);
     }
 
     @PostMapping("/save")
@@ -39,26 +41,6 @@ public class MovieController {
     @GetMapping("/initData")
     public void initData (){
         movieService.initData();
-    }
-
-    @PostMapping("/getMoviesByGenres")
-    public Movie[] getMoviesByGenres(@RequestBody String genres){
-        return movieService.getMoviesByGenres(genres);
-    }
-
-    @PostMapping("/getMovieByTitle")
-    public Movie[] getMovieByTitle(@RequestBody String title){
-        return movieService.getMoviesByTitle(title);
-    }
-
-    @PostMapping("/getMovieById")
-    public Movie[] getMovieById(@RequestBody String id){
-        return movieService.getMoviesById(id);
-    }
-
-    @PostMapping("/searchMovies")
-    public Movie[] searchMovie(@RequestBody String info){
-        return movieService.search(info);
     }
 
     @PostMapping("/recommend")

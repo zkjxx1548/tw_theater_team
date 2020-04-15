@@ -1,0 +1,164 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #222;
+  background: linear-gradient(90deg,#eee, #bbb);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.details-subtitle {
+  align-self: flex-start;
+  background: #eee;
+  color: #444;
+  padding: 6px 12px;
+  border-radius: 3px;
+  width: auto;
+}
+
+#top-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  background: #eeeeee66;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.3);
+}
+
+#top-bar:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.logo {
+  display: inline-block;
+  width: 140px;
+  margin-left: 16px;
+  align-self: center;
+}
+
+#page-title {
+  align-self: center;
+  font-size: 24px;
+}
+
+#search-bar {
+  align-self: center;
+  margin: 24px;
+  padding: 0 12px;
+  height: 32px;
+  background-color: #444;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 16px;
+
+}
+
+#search-box {
+  font-size: 16px;
+  width: 96px;
+  color: #eee;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+}
+
+#search-button {
+  height: 32px;
+  width: 32px;
+  border: 0;
+  color: transparent;
+  background-color: transparent;
+  background-image: url(./search.svg);
+  cursor: pointer;
+}
+
+#main {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 90px
+}
+
+#movie-title {
+  color: #222;
+}
+
+#movie-info {
+  display: flex;
+}
+
+#movie-info-img {
+  flex: 0 0 300px;
+  margin-right: 20px;
+}
+
+#movie-info-content {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#movie-info-photos {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: hidden;
+  height: 340px;
+}
+
+.photo-header {
+  width: 160px;
+  text-align: center;
+  margin: 8px;
+}
+
+.photo-header a {
+  color: #888;
+}
+
+.photo-container {
+  display: flex;
+  align-items: center;
+}
+
+#movie-info-photos img {
+  margin: 8px;
+}
+
+#movie-recommended {
+  display: flex;
+}
+
+.recommended {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.recommended-name {
+  margin: 0 auto;
+  height: auto;
+  font-size: 14px;
+}
