@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 public class MovieService {
     final MovieRepository movieRepository;
-    private final String FILE = Objects.requireNonNull(MovieDB.class.getClassLoader().getResource("movies.csv")).getFile();
+    private final String FILE = Objects.requireNonNull(Movie.class.getClassLoader().getResource("movies.csv")).getFile();
     private ArrayList<Movie> movies = new ArrayList<>();
 
     public MovieService(MovieRepository movieRepository) {
@@ -31,6 +31,9 @@ public class MovieService {
         }
         if (getMoviesByOriginTitle(info).length != 0) {
             return getMoviesByOriginTitle(info);
+        }
+        if (getMoviesById(info).length != 0 ){
+            return getMoviesById(info);
         }
         if (getMoviesByDirector(info).length != 0) {
             return getMoviesByDirector(info);
@@ -60,6 +63,13 @@ public class MovieService {
     public Movie[] getMoviesByOriginTitle(String originTitle) {
         return movies.stream()
                 .filter(movie -> movie.getOriginalTitle().equals(originTitle))
+                .toArray(Movie[]::new);
+    }
+
+    public Movie[] getMoviesById(String id) {
+        int idInt = Integer.parseInt(id);
+        return movies.stream()
+                .filter(movie -> movie.getId() == idInt)
                 .toArray(Movie[]::new);
     }
 

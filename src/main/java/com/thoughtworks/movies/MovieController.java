@@ -29,6 +29,11 @@ public class MovieController {
         return movieService.getMoviesByTitle(title);
     }
 
+    @PostMapping("/getMovieById")
+    public Movie[] getMovieById(@RequestBody String id){
+        return movieService.getMoviesById(id);
+    }
+
     @PostMapping("/search")
     public Movie[] search(@RequestBody String info){
         return movieService.search(info);
