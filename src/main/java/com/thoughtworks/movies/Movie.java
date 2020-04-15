@@ -8,28 +8,35 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Movie {
     @Id
     private int id;
-    private String alt;
-    private String year;
-    private String title;
     private double rating;
+    private String title;
     @Column("origin_title")
     private String originalTitle;
-    private String directors;
-    private String casts;
     private String genres;
+    private String year;
+    @Column("pub_dates")
+    private String pubDates;
     private String image;
+    private String summary;
+    private String durations;
+    private String photo;
+    private String album;
+    private String cast;
 
-    public Movie(int id, String alt, String year, String title, double rating, String originalTitle, String directors, String casts, String genres, String image) {
+    public Movie(int id, double rating, String title, String originalTitle, String genres, String year, String pubDates, String image, String summary, String durations, String photo, String album, String cast) {
         this.id = id;
-        this.alt = alt;
-        this.year = year;
-        this.title = title;
         this.rating = rating;
+        this.title = title;
         this.originalTitle = originalTitle;
-        this.directors = directors;
-        this.casts = casts;
         this.genres = genres;
+        this.year = year;
+        this.pubDates = pubDates;
         this.image = image;
+        this.summary = summary;
+        this.durations = durations;
+        this.photo = photo;
+        this.album = album;
+        this.cast = cast;
     }
 
     public int getId() {
@@ -40,20 +47,12 @@ public class Movie {
         this.id = id;
     }
 
-    public String getAlt() {
-        return alt;
+    public double getRating() {
+        return rating;
     }
 
-    public void setAlt(String alt) {
-        this.alt = alt;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public String getTitle() {
@@ -64,36 +63,12 @@ public class Movie {
         this.title = title;
     }
 
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
     public String getOriginalTitle() {
         return originalTitle;
     }
 
     public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
-    }
-
-    public String getDirectors() {
-        return directors;
-    }
-
-    public void setDirectors(String directors) {
-        this.directors = directors;
-    }
-
-    public String getCasts() {
-        return casts;
-    }
-
-    public void setCasts(String casts) {
-        this.casts = casts;
     }
 
     public String getGenres() {
@@ -104,11 +79,67 @@ public class Movie {
         this.genres = genres;
     }
 
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getPubDates() {
+        return pubDates;
+    }
+
+    public void setPubDates(String pubDates) {
+        this.pubDates = pubDates;
+    }
+
     public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getDurations() {
+        return durations;
+    }
+
+    public void setDurations(String durations) {
+        this.durations = durations;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public String getCast() {
+        return cast;
+    }
+
+    public void setCast(String cast) {
+        this.cast = cast;
     }
 }
