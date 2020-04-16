@@ -7,6 +7,7 @@ import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,10 +24,10 @@ public class MovieService {
     }
 
     public Result[] search(String info) {
-        if(getMoviesByTitle(info).length != 0) {
+        if(getResultsByTitle(info).length != 0) {
             return getResultsByTitle(info);
         }
-        if (getMoviesByOriginTitle(info).length != 0) {
+        if (getResultsByOriginTitle(info).length != 0) {
             return getResultsByOriginTitle(info);
         }
         return new Result[0];
@@ -48,7 +49,7 @@ public class MovieService {
 
     public Result[] getResultsByTitle(String title) {
         return movies.stream()
-                .filter(movie -> movie.getTitle().equals(title))
+                .filter(movie -> searchMovie(movie.getTitle(), title))
                 .map(movie -> new Result(movie.getId(),
                         movie.getRating(),
                         movie.getTitle(),
@@ -69,7 +70,7 @@ public class MovieService {
 
     public Result[] getResultsByOriginTitle(String originTitle) {
         return movies.stream()
-                .filter(movie -> movie.getOriginalTitle().equals(originTitle))
+                .filter(movie -> searchMovie(movie.getOriginalTitle(), originTitle))
                 .map(movie -> new Result(movie.getId(),
                         movie.getRating(),
                         movie.getTitle(),
@@ -109,20 +110,12 @@ public class MovieService {
                 .toArray(Movie[]::new);
     }
 
-//    public Movie[] getMoviesByDirector(String director) {
-//        return movies.stream()
-//                .filter(movie -> movie.getDirectors().contains(director))
-//                .toArray(Movie[]::new);
-//    }
-
-
     private void initMovies() {
         movies.clear();
         for(Movie movie : movieRepository.findAll()) {
             movies.add(movie);
         }
     }
-
 
     //todo
     public Movie recommendByTitle(String title) {
@@ -155,7 +148,7 @@ public class MovieService {
         return recommendMovie;
     }
 
-        public void initData() {
+    public void initData() {
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_JSON))){
             bufferedReader.readLine();
             while (bufferedReader.ready()){
@@ -181,5 +174,16 @@ public class MovieService {
 
     public String[] stringToArray(String str) {
         return str.split(",");
+    }
+
+    public boolean searchMovie(String movieTitle, String search) {
+        List<String> movieWords = Arrays.asList(movieTitle.split(""));
+        for (String s :
+                search.split("")) {
+            if (movieWords.contains(s)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
