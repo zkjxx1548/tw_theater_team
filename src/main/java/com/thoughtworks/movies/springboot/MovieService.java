@@ -100,7 +100,7 @@ public class MovieService {
                         stringToArray(movie.getPhoto()),
                         movie.getAlbum(),
                         stringToArray(movie.getCast()),
-                        new Movie[]{recommendByTitle(movie.getTitle())}))
+                        recommendByTitle(movie.getTitle())))
                 .toArray(Details[]::new);
     }
 
@@ -118,13 +118,14 @@ public class MovieService {
     }
 
     //todo
-    public Movie recommendByTitle(String title) {
-        Movie recommendMovie = movies.get(0);
+    public Movie[] recommendByTitle(String title) {
+        Movie[] recommendMovies = new Movie[5];
+        //Movie recommendMovie = movies.get(0);
         Movie currentMovie = getMoviesByTitle(title)[0];
-//        String[] currentMovieDirectors = currentMovie.getDirectors().split(",");
         String[] currentMovieGenres = currentMovie.getGenres().split(",");
         String[] currentMovieCasts = currentMovie.getCast().split(",");
         int score = 0;
+        int i = 0;
         for (Movie movie : movies){
             int tempScore = 0;
             if (movie.getTitle().equals(title)){
@@ -133,19 +134,20 @@ public class MovieService {
             tempScore += Arrays.stream(currentMovieCasts)
                     .mapToInt(cast -> movie.getCast().contains(cast) ? 6 : 0)
                     .sum();
-//            tempScore += Arrays.stream(currentMovieDirectors)
-//                    .mapToInt(director -> movie.getDirectors().contains(director) ? 4 : 0)
-//                    .sum();
             tempScore += Arrays.stream(currentMovieGenres)
                     .mapToInt(genres -> movie.getGenres().contains(genres) ? 2 : 0)
                     .sum();
             tempScore -= Math.abs(movie.getRating().doubleValue() - currentMovie.getRating().doubleValue()) * 10;
-            if (tempScore > score) {
+            if (tempScore >= score) {
                 score = tempScore;
-                recommendMovie = movie;
+                recommendMovies[i] = movie;
+                i++;
+            }
+            if (i >= 5) {
+                break;
             }
         }
-        return recommendMovie;
+        return recommendMovies;
     }
 
     public void initData() {

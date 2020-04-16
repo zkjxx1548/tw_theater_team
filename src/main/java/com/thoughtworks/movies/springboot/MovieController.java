@@ -44,7 +44,7 @@ public class MovieController {
     }
 
     @PostMapping("/recommend")
-    public Movie recommend(@RequestBody String title) {
+    public Movie[] recommend(@RequestBody String title) {
         return movieService.recommendByTitle(title);
     }
 }
